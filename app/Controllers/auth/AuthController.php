@@ -40,13 +40,13 @@ class AuthController extends BaseController
     {
 
         $validation = $this->validation->validate($request, [
-            'name' => v::notEmpty(),
+            'name' => v::noWhitespace(),
             'email' => v::notEmpty()->email(),
             'password' => v::notEmpty()
         ]);
 
         if (!$validation->ok()) {
-
+            return $response->withRedirect($this->router->pathFor('register.get'));
         }
 
         $user = User::create([

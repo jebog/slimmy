@@ -10,13 +10,14 @@ namespace App\Validation;
 
 
 use Respect\Validation\Exceptions\NestedValidationException;
+use Slim\Http\Request;
 
 class Validator
 {
 
     protected $errors;
 
-    public function validate($request, array $rules)
+    public function validate(Request $request, array $rules)
     {
         foreach ($rules as $field => $rule) {
 
@@ -27,6 +28,8 @@ class Validator
             }
         }
 
+        $_SESSION['errors'] = $this->errors;
+        $_SESSION['old'] = array_except($request->getParams(), ['password', '_token']);
         return $this;
     }
 

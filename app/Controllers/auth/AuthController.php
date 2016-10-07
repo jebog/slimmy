@@ -13,6 +13,7 @@ use App\Controllers\BaseController;
 use App\Models\User;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Respect\Validation\Validator as v;
 
 
 class AuthController extends BaseController
@@ -37,6 +38,17 @@ class AuthController extends BaseController
 
     public function postRegister(Request $request, Response $response)
     {
+
+        $validation = $this->validation->validate($request, [
+            'name' => v::notEmpty(),
+            'email' => v::notEmpty()->email(),
+            'password' => v::notEmpty()
+        ]);
+
+        if (!$validation->ok()) {
+
+        }
+
         $user = User::create([
             'name' => $request->getParam('name'),
             'email' => $request->getParam('email'),
@@ -44,5 +56,7 @@ class AuthController extends BaseController
         ]);
 
         return $response->withRedirect($this->router->pathFor('home'));
+
+
     }
 }

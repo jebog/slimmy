@@ -31,10 +31,8 @@ $container['view'] = function ($container) {
 };
 
 
-$container['HomeController'] = function ($container) {
-    return new App\Controllers\HomeController($container);
+$container['validation'] = function ($container) {
+    return new \App\Validation\Validator;
 };
 
-$container['AuthController'] = function ($container) {
-    return new \App\Controllers\Auth\AuthController($container);
-};
+$app->add(new \App\Middleware\ValidationMiddleware($container));

@@ -10,8 +10,10 @@ namespace App\Controllers\Auth;
 
 
 use App\Controllers\BaseController;
+use App\Models\User;
 use Slim\Http\Request;
 use Slim\Http\Response;
+
 
 class AuthController extends BaseController
 {
@@ -35,6 +37,12 @@ class AuthController extends BaseController
 
     public function postRegister(Request $request, Response $response)
     {
+        $user = User::create([
+            'name' => $request->getParam('name'),
+            'email' => $request->getParam('email'),
+            'password' => password_hash($request->getParam('name'), PASSWORD_DEFAULT)
+        ]);
 
+        return $response->withRedirect($this->router->pathFor('home'));
     }
 }

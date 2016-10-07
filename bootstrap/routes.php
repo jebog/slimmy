@@ -6,7 +6,7 @@
  * Time: 09:32
  */
 
-$app->get('/', 'HomeController:index');
+$app->get('/', 'HomeController:index')->setName('home');
 
 $app->get('/login', 'AuthController:getLogin')->setName('login.get');
 $app->post('/login', 'AuthController:postLogin')->setName('login.post');

@@ -34,5 +34,7 @@ $container['view'] = function ($container) {
 $container['validation'] = function ($container) {
     return new \App\Validation\Validator;
 };
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
 
-$app->add(new \App\Middleware\ValidationMiddleware($container));

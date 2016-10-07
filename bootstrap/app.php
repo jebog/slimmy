@@ -19,8 +19,16 @@ $app = new Slim\App($settings);
  */
 require __DIR__ . '/../bootstrap/container.php';
 
+/**
+ * Contains Middleware
+ */
+require __DIR__ . '/../bootstrap/middleware.php';
 
-require __DIR__.'/../bootstrap/controllers.php';
+/**
+ * Contains Middleware items
+ */
+require __DIR__ . '/../bootstrap/controllers.php';
+
 /**
  * Contains routes
  */

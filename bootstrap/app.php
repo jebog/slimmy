@@ -4,31 +4,22 @@ session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * App Instance settings
+ */
+$settings = require __DIR__ . '/../bootstrap/settings.php';
 
-$app = new Slim\App([
-    'settings' => [
-        'displayErrorDetails' => true,
-    ]
-]);
+/**
+ * App Instance
+ */
+$app = new Slim\App($settings);
 
-$container = $app->getContainer();
+/**
+ * Contains Container items
+ */
+require __DIR__ . '/../bootstrap/container.php';
 
-$container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
-        'cache' => false
-    ]);
-
-    $view->addExtension(new \Slim\Views\TwigExtension(
-        $container->router,
-        $container->request->getUri()
-    ));
-
-    return $view;
-};
-
-
-$container['HomeController'] = function ($container) {
-    return new App\Controllers\HomeController($container);
-};
-
-require __DIR__ . '/../app/routes.php';
+/**
+ * Contains routes
+ */
+require __DIR__ . '/../bootstrap/routes.php';

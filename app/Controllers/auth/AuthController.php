@@ -11,9 +11,9 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\User;
+use Respect\Validation\Validator as v;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Respect\Validation\Validator as v;
 
 
 class AuthController extends BaseController

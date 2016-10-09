@@ -92,4 +92,10 @@ class AuthController extends BaseController
 
 
     }
+
+    public function logout($request , Response $response){
+
+        $this->auth->logout();
+        return $response->withRedirect($this->router->pathFor('home'));
+    }
 }

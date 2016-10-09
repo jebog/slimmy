@@ -43,14 +43,19 @@ class AuthController extends BaseController
             'password' => v::notEmpty()
         ]);
 
+
+
         if (!$validation->ok()) {
             return $response->withRedirect($this->router->pathFor('login.get'));
         }
+
 
         $auth = $this->auth->attempt(
             $request->getParam('email'),
             $request->getParam('password')
         );
+
+
 
         if (!$auth) {
             return $response->withRedirect($this->router->pathFor('login.get'));
@@ -80,7 +85,7 @@ class AuthController extends BaseController
         $user = User::create([
             'name' => $request->getParam('name'),
             'email' => $request->getParam('email'),
-            'password' => password_hash($request->getParam('name'), PASSWORD_DEFAULT)
+            'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT)
         ]);
 
         return $response->withRedirect($this->router->pathFor('home'));

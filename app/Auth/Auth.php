@@ -16,7 +16,7 @@ class Auth
 
     public function user()
     {
-        if (isset($_SESSION['user'])){
+        if (!empty($_SESSION['user'])){
             return User::find($_SESSION['user']);
         }
 
@@ -25,23 +25,29 @@ class Auth
 
     public function check()
     {
-        return isset($_SESSION['user']);
+        return !empty($_SESSION['user']);
     }
 
     public function attempt($email, $password)
     {
         $user = User::query()
-            ->where('email', $email);
+            ->where('email', $email)
+            ->first();
 
-        if (!$user)
+        if (!$user){
             return false;
+        }
 
         if (password_verify($password, $user->password)) {
             $_SESSION['user'] = $user->id;
             return true;
         }
 
-
         return false;
+    }
+
+    public function logout(){
+        unset($_SESSION['user']);
+
     }
 }

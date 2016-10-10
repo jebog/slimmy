@@ -13,12 +13,16 @@ $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$container['db'] = function ($container) use ($capsule) {
+$container['db'] = function () use ($capsule) {
     return $capsule;
 };
 
-$container['auth'] = function ($container) {
+$container['auth'] = function () {
     return new App\Auth\Auth();
+};
+
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
 };
 
 $container['view'] = function ($container) {
@@ -27,23 +31,24 @@ $container['view'] = function ($container) {
     ]);
 
     $view->addExtension(new \Slim\Views\TwigExtension(
-        $container->router,
-        $container->request->getUri()
+        $container->get('router'),
+        $container->get('request')->getUri()
     ));
 
     $view->getEnvironment()->addGlobal('auth', [
-        'check' => $container->auth->check(),
-        'user' => $container->auth->user()
+        'check' => $container->get('auth')->check(),
+        'user' => $container->get('auth')->user()
     ]);
 
+    $view->getEnvironment()->addGlobal('flash', $container->get('flash'));
     return $view;
 };
 
 
-$container['validation'] = function ($container) {
+$container['validation'] = function () {
     return new \App\Validation\Validator;
 };
-$container['csrf'] = function ($c) {
+$container['csrf'] = function () {
     return new \Slim\Csrf\Guard;
 };
 

@@ -14,6 +14,7 @@ use App\Controllers\BaseController;
 use App\Models\User;
 use App\Validation\Validator;
 use Respect\Validation\Validator as v;
+use Slim\Flash\Messages;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Route;
@@ -25,6 +26,7 @@ use Slim\Views\Twig;
  * @property  Twig view
  * @property  Route router
  * @property  Auth auth
+ * @property  Messages flash
  */
 class AuthController extends BaseController
 {
@@ -46,6 +48,7 @@ class AuthController extends BaseController
 
 
         if (!$validation->ok()) {
+            $this->flash->addMessage('error', 'Form validation error');
             return $response->withRedirect($this->router->pathFor('login.get'));
         }
 
@@ -58,9 +61,11 @@ class AuthController extends BaseController
 
 
         if (!$auth) {
+            $this->flash->addMessage('error', 'Email or password (or both) is incorrect ');
             return $response->withRedirect($this->router->pathFor('login.get'));
         }
 
+        $this->flash->addMessage('success', 'You are now logged');
         return $response->withRedirect($this->router->pathFor('home'));
     }
 
@@ -79,6 +84,7 @@ class AuthController extends BaseController
         ]);
 
         if (!$validation->ok()) {
+            $this->flash->addMessage('error', 'Form validation error');
             return $response->withRedirect($this->router->pathFor('register.get'));
         }
 
@@ -88,6 +94,7 @@ class AuthController extends BaseController
             'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT)
         ]);
 
+        $this->flash->addMessage('success', 'New User Added');
         return $response->withRedirect($this->router->pathFor('home'));
 
 
@@ -96,6 +103,7 @@ class AuthController extends BaseController
     public function logout($request , Response $response){
 
         $this->auth->logout();
+        $this->flash->addMessage('success', 'Successfully disconnected');
         return $response->withRedirect($this->router->pathFor('home'));
     }
 }

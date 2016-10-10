@@ -17,7 +17,8 @@ class Auth
     public function user()
     {
         if (!empty($_SESSION['user'])){
-            return User::find($_SESSION['user']);
+            return User::query()
+                ->find($_SESSION['user']);
         }
 
         return null;

@@ -6,6 +6,9 @@
  * Time: 20:13
  */
 
+
+/** @var \Slim\Container $container */
+
 $app->add(new \App\Middleware\ValidationMiddleware($container));
 $app->add(new \App\Middleware\CsrfMiddleware($container));
 $app->add($container->get('csrf'));

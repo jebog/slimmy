@@ -103,7 +103,6 @@ class AuthController extends BaseController
     public function logout($request , Response $response){
 
         $this->auth->logout();
-        $this->flash->addMessage('success', 'Successfully disconnected');
         return $response->withRedirect($this->router->pathFor('home'));
     }
 }

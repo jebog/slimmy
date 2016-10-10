@@ -8,8 +8,14 @@
  */
 namespace App\Middleware;
 
-class Middleware
+
+use Slim\Container;
+
+abstract class Middleware
 {
+    /**
+     * @var Container $container
+     */
     protected $container;
 
     /**

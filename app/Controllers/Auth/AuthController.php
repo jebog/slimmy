@@ -17,14 +17,14 @@ use Respect\Validation\Validator as v;
 use Slim\Flash\Messages;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Slim\Route;
+use Slim\Router;
 use Slim\Views\Twig;
 
 
 /**
  * @property  Validator validation
  * @property  Twig view
- * @property  Route router
+ * @property  Router router
  * @property  Auth auth
  * @property  Messages flash
  */

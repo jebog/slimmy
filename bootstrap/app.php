@@ -25,11 +25,11 @@ require __DIR__ . '/../bootstrap/container.php';
 require __DIR__ . '/../bootstrap/middleware.php';
 
 /**
- * Contains Middleware items
+ * Contains Web routes
  */
-require __DIR__ . '/../bootstrap/controllers.php';
+require __DIR__ . '/../routes/web.php';
 
 /**
- * Contains routes
+ * Contains Api routes
  */
-require __DIR__ . '/../bootstrap/routes.php';
+require __DIR__ . '/../routes/api.php';

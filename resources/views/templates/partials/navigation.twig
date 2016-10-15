@@ -25,7 +25,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ path_for('logout') }}">
+                                <a href="/logout">
                                     Logout
                                 </a>
 
@@ -34,8 +34,8 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="{{ path_for('login.get') }}">Login</a></li>
-                    <li><a href="{{ path_for('register.get') }}">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
                 {% endif %}
             </ul>
 

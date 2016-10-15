@@ -18,7 +18,9 @@ return [
             'collation' => 'utf8_unicode_ci',
             'charset' => 'utf8',
             'prefix' => ''
-        ]
+        ],
+        'debug' => true,
+        'whoops.editor' => 'phpstorm' // Support click to open editor
     ],
 
 ];

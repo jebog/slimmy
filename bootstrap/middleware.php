@@ -8,7 +8,7 @@
 
 
 /** @var \Slim\Container $container */
-
+$app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
 $app->add(new \App\Middleware\ValidationMiddleware($container));
 $app->add(new \App\Middleware\CsrfMiddleware($container));
 $app->add($container->get('csrf'));

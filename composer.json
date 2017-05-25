@@ -1,4 +1,23 @@
 {
+  "name": "donmarkus/slimmy",
+  "description": "A Bootstrap Framework based on Slim3 and Laravel Components",
+  "type": "project",
+  "license": "MIT",
+  "keywords": [
+    "framework",
+    "slimmy",
+    "boilerplate",
+    "laravel",
+    "slim 3"
+  ],
+  "authors": [
+    {
+      "name": "Jean-Marc Amon",
+      "email": "jmbdilem@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "slim/slim": "^3.5",
     "slim/twig-view": "^2.1",
@@ -11,7 +30,9 @@
   "autoload": {
     "psr-4": {
       "App\\": "app"
-    }
+    },
+    "files": [
+    ]
   },
   "scripts": {
     "post-update-cmd": "composer du -o",
@@ -20,5 +41,9 @@
       "composer du -o"
     ],
     "post-create-project-cmd": []
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
   }
 }

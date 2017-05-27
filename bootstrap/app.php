@@ -4,6 +4,15 @@ session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
+//Load .env file
+
+try {
+    (new Dotenv\Dotenv(__DIR__ . '/../'))->load();
+} catch (Exception $exception) {
+    //die($exception->getMessage());
+}
+
+
 /**
  * App Instance settings
  */

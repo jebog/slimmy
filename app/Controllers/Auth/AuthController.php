@@ -88,7 +88,7 @@ class AuthController extends BaseController
             return $response->withRedirect($this->router->pathFor('register.get'));
         }
 
-        $user = User::create([
+        User::create([
             'name' => $request->getParam('name'),
             'email' => $request->getParam('email'),
             'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT)

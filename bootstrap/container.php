@@ -27,7 +27,7 @@ $container['flash'] = function () {
 
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
-        'cache' => false
+        'cache' => env('ENABLE_VIEW_CACHE') ? __DIR__ . '/../storage/cache/views' : false
     ]);
 
     $view->addExtension(new \Slim\Views\TwigExtension(
@@ -40,7 +40,8 @@ $container['view'] = function ($container) {
         'user' => $container->get('auth')->user()
     ]);
 
-    $view->getEnvironment()->addGlobal('flash', $container->get('flash'));
+    $view->getEnvironment()
+        ->addGlobal('flash', $container->get('flash'));
     return $view;
 };
 

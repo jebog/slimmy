@@ -25,6 +25,13 @@ $container['flash'] = function () {
     return new \Slim\Flash\Messages();
 };
 
+// Register globally to app
+
+
+$container['session'] = function () {
+    return new \SlimSession\Helper;
+};
+
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
         'cache' => env('ENABLE_VIEW_CACHE') ? __DIR__ . '/../storage/cache/views' : false

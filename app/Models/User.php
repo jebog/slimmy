@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class User
  * @package App\Models
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property int $id
  */
 class User extends Model
 {

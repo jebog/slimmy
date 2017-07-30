@@ -6,6 +6,8 @@
  * Time: 09:24
  */
 
+//session_start();
+
 require __DIR__ . '/../bootstrap/app.php';
 
 

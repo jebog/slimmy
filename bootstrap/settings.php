@@ -20,6 +20,15 @@ return [
             'prefix' => ''
         ],
         'debug' => (bool)getenv('APP_DEBUG'),
-        'whoops.editor' => 'phpstorm' // Support click to open editor
+        'whoops.editor' => 'phpstorm',
+        'session' => [
+            'lifetime' => '1 hour',
+            'path' => '/',
+            'domain' => null,
+            'secure' => false,
+            'httponly' => false,
+            'name' => 'slimmy_session',
+            'autorefresh' => false,
+        ]
     ],
 ];
